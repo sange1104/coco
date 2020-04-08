@@ -1,0 +1,84 @@
+#Queue
+
+class Node:
+    def __init__(self,value):
+        self.value=value
+        self.next=None
+
+class Queue:
+    def __init__(self):
+        self.rear=None
+        self.front=None
+
+    def enqueue(self,data):
+        new=Node(data)
+        if self.is_empty():
+            self.front=new
+            self.rear=new
+
+        else:
+            self.rear.next=new
+            self.rear=new
+
+    def dequeue(self):
+        if self.is_empty():
+            print('empty')
+        else:
+            popped=self.front
+            if self.front==self.rear:
+                self.front=None
+                self.rear=None
+            else:
+                self.front=self.front.next
+            
+            return popped
+
+
+    def is_empty(self):
+        if self.front==None and self.rear==None:
+            return True
+        else:
+            return False
+
+    def display(self):
+        if self.is_empty():
+            print('empty')
+            return None
+        temp=self.front
+        while temp.next:
+            print(temp.value, end=' -> ')
+            temp=temp.next
+
+            
+        if self.rear==self.front:
+            print(temp.value)
+        else:
+            print(end=' ')
+            print(temp.value)
+
+def main():
+    queue=Queue()
+
+    queue.enqueue('A')
+    queue.display()
+   
+    queue.enqueue('B')
+    queue.display()
+    
+    queue.enqueue('C')
+    queue.display()
+ 
+    
+    queue.dequeue()
+    queue.display()
+    
+    queue.dequeue()
+    queue.display()
+    
+    queue.dequeue()
+    queue.display()
+
+    queue.dequeue()
+main()
+    
+    
